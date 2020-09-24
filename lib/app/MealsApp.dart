@@ -1,17 +1,17 @@
 import 'package:flutter/material.dart';
 import './pages/Home.dart';
 
-class MailApp extends StatelessWidget {
+class MealsApp extends StatelessWidget {
   // This widget is the root of your application.
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
-      title: 'Flutter Demo',
+      title: 'Meals App',
       theme: ThemeData(
         primarySwatch: Colors.blue,
         visualDensity: VisualDensity.adaptivePlatformDensity,
       ),
-      home: Home(title: 'Flutter Demo Home Page'),
+      home: Home(title: 'Meals App'),
     );
   }
 }
