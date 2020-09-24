@@ -1,10 +1,12 @@
 import 'package:flutter/material.dart';
 import 'package:meals_app/app/models/Category.dart';
-import 'package:meals_app/app/widgets/CategoryItem.dart';
 
 import '../data/dummy_data.dart';
+import '../widgets/CategoryItem.dart';
 
 class Categories extends StatefulWidget {
+  static const ROUTE_NAME = '/';
+
   Categories({Key key, this.title}) : super(key: key);
 
   final String title;

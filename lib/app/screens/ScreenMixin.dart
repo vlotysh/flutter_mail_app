@@ -1,0 +1,3 @@
+mixin ScreenMixin {
+   String routeName();
+}
