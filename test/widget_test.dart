@@ -7,12 +7,12 @@
 
 import 'package:flutter/material.dart';
 import 'package:flutter_test/flutter_test.dart';
-import 'package:mail_app/app/MealsApp.dart';
+import 'package:meals_app/app/MealsApp.dart';
 
 void main() {
   testWidgets('Counter increments smoke test', (WidgetTester tester) async {
     // Build our app and trigger a frame.
-    await tester.pumpWidget(MailApp());
+    await tester.pumpWidget(MealsApp());
 
     // Verify that our counter starts at 0.
     expect(find.text('0'), findsOneWidget);

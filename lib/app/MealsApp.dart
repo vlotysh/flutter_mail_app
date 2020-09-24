@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import './pages/Categories.dart';
 import './pages/Home.dart';
 
 class MealsApp extends StatelessWidget {
@@ -11,7 +12,7 @@ class MealsApp extends StatelessWidget {
         primarySwatch: Colors.blue,
         visualDensity: VisualDensity.adaptivePlatformDensity,
       ),
-      home: Home(title: 'Meals App'),
+      home: Categories(title: 'Meals App'),
     );
   }
 }
