@@ -6,43 +6,76 @@ import '../models/Meal.dart';
 class MealDetail extends StatelessWidget {
   static const ROUTE_NAME = '/meal-detail';
 
+  Widget buildSectionTitle(String text, context) {
+    return Container(
+      child: Text(
+        text,
+        style: Theme.of(context).textTheme.subtitle1,
+      ),
+    );
+  }
+
+  Widget buildContainer(Widget child) {
+    return Container(
+        decoration: BoxDecoration(
+          color: Colors.white,
+          border: Border.all(color: Colors.grey),
+        ),
+        height: 150,
+        width: double.infinity,
+        margin: EdgeInsets.symmetric(vertical: 10),
+        padding: EdgeInsets.all(10),
+        child: child);
+  }
+
   @override
   Widget build(BuildContext context) {
     final Map<String, String> arguments =
         ModalRoute.of(context).settings.arguments;
 
-    //assert(meal != null, 'Meal is required');
-
-    Meal meal =
+    final Meal meal =
         DUMMY_MEALS.firstWhere((element) => element.id == arguments['id']);
 
     return Scaffold(
       appBar: AppBar(
         title: Text(meal.title),
       ),
-      body: Column(
-        children: (meal.steps as List<String>)
-            .map((String step) => Text(step))
-            .toList(),
-      ),
-      bottomNavigationBar: BottomNavigationBar(
-        items: const <BottomNavigationBarItem>[
-          BottomNavigationBarItem(
-            icon: Icon(Icons.home),
-            title: Text('Home'),
-          ),
-          BottomNavigationBarItem(
-            icon: Icon(Icons.business),
-            title: Text('Business'),
-          ),
-          BottomNavigationBarItem(
-            icon: Icon(Icons.school),
-            title: Text('School'),
-          ),
-        ],
-        currentIndex: 0,
-        selectedItemColor: Colors.amber[800],
-        onTap: null,
+      body: SingleChildScrollView(
+        child: Column(
+          children: [
+            Container(
+              height: 300,
+              width: double.infinity,
+              child: Image.network(meal.imageUrl,
+                  alignment: Alignment.center, fit: BoxFit.cover),
+            ),
+            buildSectionTitle('Ingredients', context),
+            buildContainer(ListView.builder(
+                itemCount: meal.ingredients.length,
+                itemBuilder: (ctx, index) => Card(
+                      color: Theme.of(context).accentColor,
+                      child: Padding(
+                        padding: const EdgeInsets.symmetric(
+                            vertical: 5, horizontal: 10),
+                        child: Text(meal.ingredients[index]),
+                      ),
+                    ))),
+            buildSectionTitle('Steps', context),
+            buildContainer(ListView.builder(
+                itemCount: meal.steps.length,
+                itemBuilder: (ctx, index) => Column(
+                      children: [
+                        ListTile(
+                          leading: CircleAvatar(
+                            child: Text('# ${index + 1}'),
+                          ),
+                          title: Text(meal.steps[index]),
+                        ),
+                        Divider()
+                      ],
+                    )))
+          ],
+        ),
       ),
     );
   }
