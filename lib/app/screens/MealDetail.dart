@@ -6,6 +6,11 @@ import '../models/Meal.dart';
 class MealDetail extends StatelessWidget {
   static const ROUTE_NAME = '/meal-detail';
 
+  final Function isFavorite;
+  final Function toggleFavorite;
+
+  MealDetail(this.isFavorite, this.toggleFavorite);
+
   Widget buildSectionTitle(String text, context) {
     return Container(
       child: Text(
@@ -73,9 +78,15 @@ class MealDetail extends StatelessWidget {
                         ),
                         Divider()
                       ],
-                    )))
+                    ))),
           ],
         ),
+      ),
+      floatingActionButton: FloatingActionButton(
+        backgroundColor: Theme.of(context).primaryColor,
+        child: Icon(isFavorite(meal) ? Icons.star : Icons.star_border),
+        foregroundColor: Theme.of(context).accentColor,
+        onPressed: () => toggleFavorite(meal),
       ),
     );
   }

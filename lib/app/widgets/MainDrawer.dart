@@ -48,10 +48,16 @@ class MainDrawer extends StatelessWidget {
         SizedBox(
           height: 20,
         ),
-        DrawerItem('Meals', Icons.restaurant,
-            () => Navigator.of(context).pushNamed(Categories.ROUTE_NAME)),
-        DrawerItem('Settings', Icons.settings,
-            () => Navigator.of(context).pushNamed(Settings.ROUTE_NAME)),
+        DrawerItem(
+            'Meals',
+            Icons.restaurant,
+            () => Navigator.of(context)
+                .pushReplacementNamed(Categories.ROUTE_NAME)),
+        DrawerItem(
+            'Settings',
+            Icons.settings,
+            () => Navigator.of(context)
+                .pushReplacementNamed(Settings.ROUTE_NAME)),
       ],
     ));
   }

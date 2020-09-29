@@ -6,8 +6,9 @@ import 'MealIconInfo.dart';
 
 class MealItem extends StatelessWidget {
   final Meal meal;
+  final Function removeItem;
 
-  MealItem({this.meal});
+  MealItem({this.meal, this.removeItem});
 
   String get complexityText {
     switch (meal.complexity) {
@@ -42,8 +43,16 @@ class MealItem extends StatelessWidget {
   }
 
   void selectMeal(BuildContext context, Meal meal) {
-    Navigator.of(context)
+    Future future = Navigator.of(context)
         .pushNamed(MealDetail.ROUTE_NAME, arguments: {'id': meal.id});
+
+    future.then((result) {
+      // app/screens/MealDetail.dart:84
+
+      if (result != null) {
+        //removeItem(result);
+      }
+    });
   }
 
   @override
